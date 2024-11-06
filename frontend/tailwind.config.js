@@ -7,14 +7,14 @@ export default {
   theme: {
     extend: {
       colors:{
-        'primary':'#FFCE1A', 
+        'primary':'#8BC34A', 
         'secondary':'#0D0842',
         'blackBG':'#F3F3F3',
         'favorite':'#FF5841'
       },
       fontFamily:{
-        'primary':["Reddit Mono", "monospace"],
-        'secondary':["Reddit Mono", "monospace"]
+        'primary':["Open Sans", "serif"],
+        'secondary':["Numans", "serif"]
       }
     },
   },
