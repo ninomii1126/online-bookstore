@@ -6,10 +6,13 @@ import { FaUserCircle } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import avatarImg from "../assets/avatar.png";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  console.log(isDropdownOpen);
+  const cartItems = useSelector(state=>state.cart.cartItems);
+  console.log(cartItems);
+
   const currentUser = true;
   const navigation=[
     {name:"Dashboard", href:"/dashboard"},
@@ -82,10 +85,12 @@ const Navbar = () => {
             className="bg-primary p-1 sm:px-6 px-2 flex items-center rounded-sm"
           >
             <LuShoppingCart />
-            <span className="text-sm font-semibold sm: ml-1">0</span>
+            {
+              cartItems?.length > 0 ? <span className="text-sm font-semibold sm: ml-1">{cartItems.length}</span> : <span className="text-sm font-semibold sm: ml-1">0</span>
+            }
           </Link>
         </div>
-      </nav>
+      </nav>  
     </header>
   )
 }

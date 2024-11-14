@@ -13,9 +13,10 @@ export default {
         'favorite':'#FF5841'
       },
       fontFamily:{
-        'primary':["Open Sans", "serif"],
-        'secondary':["Numans", "serif"]
-      }
+        'primary':["Numans", "serif"],
+        'secondary':["Open Sans", "serif"],
+      },
+
     },
   },
   plugins: [],
