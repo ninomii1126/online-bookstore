@@ -81,7 +81,7 @@ const Navbar = () => {
             <FaHeart className="size-6" />
           </button>
           <Link
-            to="/"
+            to="/cart"
             className="bg-primary p-1 sm:px-6 px-2 flex items-center rounded-sm"
           >
             <LuShoppingCart />
