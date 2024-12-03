@@ -3,9 +3,10 @@ package com.Joyce.bookstore.service;
 import com.Joyce.bookstore.model.Book;
 import com.Joyce.bookstore.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class BookServiceImpl implements BookService{
 
     @Autowired
@@ -19,5 +20,10 @@ public class BookServiceImpl implements BookService{
     @Override
     public List<Book> getBooksByCategoryId(String id) {
         return getBooksByCategoryId(id);
+    }
+
+    @Override
+    public Book createBook(Book newBook) {
+        return bookRepository.save(newBook);
     }
 }

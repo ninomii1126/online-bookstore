@@ -11,4 +11,6 @@ public interface BookRepository extends MongoRepository<Book, String> {
     List<Book> findAll();
     @Query(value="{category:'?0'}")
     List<Book> findAll(String category);
+
+//    void createBook(Book newBook);
 }

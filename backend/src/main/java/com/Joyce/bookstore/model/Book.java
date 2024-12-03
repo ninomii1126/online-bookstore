@@ -21,9 +21,9 @@ public class Book {
     private  String description;
 
     private String category;
-    private boolean isTrending;
+    private boolean trending;
 
-    private String coverImg;
+    private String coverImage;
 
     private BigDecimal oldPrice;
 

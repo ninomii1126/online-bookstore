@@ -1,7 +1,5 @@
 package com.Joyce.bookstore;
 
-import com.Joyce.bookstore.model.Book;
-import com.Joyce.bookstore.model.Customer;
 import com.Joyce.bookstore.repository.BookRepository;
 import com.Joyce.bookstore.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,15 +42,15 @@ public class Application {
 //            customerRepository.save(new com.Joyce.bookstore.model.Customer("Bob", "Smith"));
 
             // fetch all customers
-            System.out.println("Customers found with findAll():");
-            System.out.println("-------------------------------");
-            for (Customer customer : customerRepository.findAll()) {
-                System.out.println(customer);
-            }
-            System.out.println();
-            for (Book book : bookRepository.findAll()) {
-                System.out.println(book.title());
-            }
+//            System.out.println("Customers found with findAll():");
+//            System.out.println("-------------------------------");
+//            for (Customer customer : customerRepository.findAll()) {
+//                System.out.println(customer);
+//            }
+//            System.out.println();
+//            for (Book book : bookRepository.findAll()) {
+//                System.out.println(book.title());
+//            }
 
 
 

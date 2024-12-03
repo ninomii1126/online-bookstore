@@ -27,11 +27,23 @@ const TopSeller = () => {
   const [books, setBooks] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("Choose a genre");
 
+  // useEffect(() => {
+  //   fetch("books.json")
+  //     .then((res) => res.json())
+  //     .then((data) => setBooks(data));
+  // }, []);
+
+
   useEffect(() => {
-    fetch("books.json")
-      .then((res) => res.json())
-      .then((data) => setBooks(data));
+
+    fetch('http://localhost:8080/api/getBooks')
+      .then(response => response.json())
+      .then(data => {
+        setBooks(data);
+      })
   }, []);
+  console.log(books);
+
 
   const filteredBooks =
     selectedCategory === "Choose a genre"
