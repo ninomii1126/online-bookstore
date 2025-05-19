@@ -1,12 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
 import cartReducer from "./features/counter/cartSlice.js"
+import booksApi from './features/counter/booksApi.js'
+
 
 export const store = configureStore({
   reducer: {
-    cart: cartReducer
+    cart: cartReducer,
+    [booksApi.reducerPath]: booksApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(booksApi.middleware),
 })
 
-// The Redux store is created using the configureStore function from Redux Toolkit. 
-// configureStore requires that we pass in a reducer argument.
 

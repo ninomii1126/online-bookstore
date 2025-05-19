@@ -24,11 +24,11 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	// https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
 	implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '3.4.0'
-//	// https://mvnrepository.com/artifact/org.springframework.data/spring-data-mongodb
 //	implementation group: 'org.springframework.data', name: 'spring-data-mongodb', version: '4.4.0'
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb', version: '3.3.5'
 
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 }
 
@@ -37,11 +37,8 @@ repositories {
 }
 
 dependencies {
-	compileOnly 'org.projectlombok:lombok:1.18.36'
-	annotationProcessor 'org.projectlombok:lombok:1.18.36'
-
-	testCompileOnly 'org.projectlombok:lombok:1.18.36'
-	testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
+	compileOnly 'org.projectlombok:lombok:1.18.28' // Use the latest version
+	annotationProcessor 'org.projectlombok:lombok:1.18.28'
 }
 
 //dependencies {

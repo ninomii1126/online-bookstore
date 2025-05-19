@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class BookController {
@@ -21,8 +20,24 @@ public class BookController {
         return new ResponseEntity<List<Book>>(bookService.getAllBooks(), HttpStatus.OK);
     }
 
+    @GetMapping("/getSingleBook/{id}")
+    ResponseEntity<Book> getSingleBooks(@PathVariable String id){
+//        ObjectId objectId = new ObjectId(id);
+        return new ResponseEntity<Book>(bookService.getSingleBook(id), HttpStatus.OK);
+    }
+
     @PostMapping("/createBook")
     ResponseEntity<Book> createBook(@RequestBody Book book){
         return new ResponseEntity<Book>(bookService.createBook(book), HttpStatus.OK);
+    }
+
+    @PutMapping("/updateBook/{id}")
+    ResponseEntity<Book> updateBook(@PathVariable String id, @RequestBody Book book){
+        return new ResponseEntity<Book>(bookService.updateBook(id, book), HttpStatus.OK);
+    }
+
+    @DeleteMapping("deleteBook/{id}") 
+    ResponseEntity<String> deleteBook(@PathVariable String id){
+        return new ResponseEntity<String>(bookService.deleteBook(id), HttpStatus.OK);
     }
 }

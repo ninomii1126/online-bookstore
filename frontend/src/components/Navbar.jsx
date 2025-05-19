@@ -7,13 +7,19 @@ import { FaHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import avatarImg from "../assets/avatar.png";
 import { useSelector } from "react-redux";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const cartItems = useSelector(state=>state.cart.cartItems);
+  const {currentUser, logout} = useAuth();
+
+  const handleLogout = () => {
+    logout();
+  }
   console.log(cartItems);
 
-  const currentUser = true;
+  // const currentUser = false;
   const navigation=[
     {name:"Dashboard", href:"/dashboard"},
     {name:"Orders", href:"/order"},
@@ -54,6 +60,7 @@ const Navbar = () => {
                   }`}
                 />
               </button>
+              {/* show dropdown */}
                {
                  isDropdownOpen && (
                     <div className="absolute right-0 mt-2 w-48 bg-white">
@@ -67,6 +74,8 @@ const Navbar = () => {
                                     </li>
                                 ))
                             }
+                            <li><button onClick={handleLogout}
+                            className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100">Logout</button></li>
                         </ul>
                     </div>
                  )

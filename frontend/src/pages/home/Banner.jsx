@@ -8,7 +8,8 @@ const Banner = () => {
         <img src={bannerImg} alt="" />
       </div>
       <div className="md:w-1/2 w-full">
-        <h1 className="md:text-5x1 text-2x1 font-Large font-bold mb-7 font-primary">
+        {/* <h1 className="md:text-5x1 text-2x1 font-Large font-bold mb-7 font-primary"> */}
+        <h1 className="md:text-5xl text-2xl font-bold mb-7 font-primary">
           New Releases This Week
         </h1>
         <p className="mb-10">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import BookCard from "../books/BookCard";
 
 // Import Swiper React components
@@ -9,11 +9,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-
 // import required modules
 import { Pagination } from "swiper/modules";
-import { Navigation } from 'swiper/modules';
-
+import { Navigation } from "swiper/modules";
+import { useFetchAllBooksQuery } from "../../redux/features/counter/booksApi"
 
 const categories = [
   "Choose a genre",
@@ -24,7 +23,7 @@ const categories = [
 ];
 
 const TopSeller = () => {
-  const [books, setBooks] = useState([]);
+  // const [books, setBooks] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("Choose a genre");
 
   // useEffect(() => {
@@ -33,17 +32,19 @@ const TopSeller = () => {
   //     .then((data) => setBooks(data));
   // }, []);
 
+  // useEffect(() => {
 
-  useEffect(() => {
+  //   fetch('http://localhost:8080/api/getBooks')
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       setBooks(data);
+  //     })
+  // }, []);
+  // console.log(books);
 
-    fetch('http://localhost:8080/api/getBooks')
-      .then(response => response.json())
-      .then(data => {
-        setBooks(data);
-      })
-  }, []);
-  console.log(books);
+  const { data: books = [] } = useFetchAllBooksQuery();
 
+  // console.log(books);
 
   const filteredBooks =
     selectedCategory === "Choose a genre"
@@ -51,9 +52,6 @@ const TopSeller = () => {
       : books.filter(
           (book) => book.category === selectedCategory.toLowerCase()
         );
-
-  console.log(filteredBooks);
-  console.log(books);
 
   return (
     <div className="py-10">
@@ -77,7 +75,7 @@ const TopSeller = () => {
         slidesPerView={1}
         spaceBetween={30}
         pagination={{
-        dynamicBullets: true,
+          dynamicBullets: true,
           clickable: true,
         }}
         navigation={true}
@@ -102,11 +100,12 @@ const TopSeller = () => {
         modules={[Pagination, Navigation]}
         className="mySwiper"
       >
-        {filteredBooks.length>0 && filteredBooks.map((book, index) => (
-            <SwiperSlide key={index}><BookCard key={index} book={book} /></SwiperSlide>
-
-          
-        ))}
+        {filteredBooks.length > 0 &&
+          filteredBooks.map((book, index) => (
+            <SwiperSlide key={index}>
+              <BookCard key={index} book={book} />
+            </SwiperSlide>
+          ))}
       </Swiper>
     </div>
   );
