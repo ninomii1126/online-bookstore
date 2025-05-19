@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const CheckoutPage = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -35,7 +36,7 @@ const CheckoutPage = () => {
     console.log(newOrder);
   };
 
-  const currentUser = true; // TO-DO: get user from auth
+  const {currentUser} = useAuth(); 
 
   return (
     <>
