@@ -1,11 +1,14 @@
 package com.Joyce.bookstore.service;
 
-import com.Joyce.bookstore.model.Book;
+import com.Joyce.bookstore.domain.Book;
+import com.Joyce.bookstore.dto.response.BookResponse;
+import com.Joyce.bookstore.mapper.BookMapper;
 import com.Joyce.bookstore.repository.BookRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 @Service
@@ -15,8 +18,12 @@ public class BookServiceImpl implements BookService{
     BookRepository bookRepository;
 
     @Override
-    public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+    public List<BookResponse> getAllBooks() {
+        List<BookResponse> res = new ArrayList<>();
+        for(Book book: bookRepository.findAll()){
+            res.add(BookMapper.toResponse(book));
+        }
+        return res;
     }
 
     @Override

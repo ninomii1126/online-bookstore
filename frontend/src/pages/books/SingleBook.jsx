@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom' 
-import {useFetchBookByIdQuery} from '../../redux/features/counter/booksApi'
+import {useFetchBookByIdQuery} from '../../redux/features/books/booksApi'
 import {} from 'react-icons/fi'
 import {addToCart} from '../../redux/features/counter/cartSlice'
 import { getImgUrl } from '../../utils/getImgUrl'

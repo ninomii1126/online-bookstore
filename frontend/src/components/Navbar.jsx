@@ -17,9 +17,7 @@ const Navbar = () => {
   const handleLogout = () => {
     logout();
   }
-  console.log(cartItems);
 
-  // const currentUser = false;
   const navigation=[
     {name:"Dashboard", href:"/dashboard"},
     {name:"Orders", href:"/order"},

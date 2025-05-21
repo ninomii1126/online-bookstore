@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import Swal from "sweetalert2";
+import { useCreateOrderMutation } from "../../redux/features/order/orderApi";
 
 const CheckoutPage = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -18,25 +20,54 @@ const CheckoutPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const [createOrder, {isLoading, error}] = useCreateOrderMutation();
+  const navigate = useNavigate();
+
+  const onSubmit = async(data) => {
     // console.log(data)
     const newOrder = {
       name: data.name,
       email: currentUser?.email,
       address: {
         city: data.city,
-        country: data.contry,
+        country: data.country,
         state: data.state,
         zipcode: data.zipcode,
       },
       phone: data.phone,
-      productIds: cartItems.map((item) => item?._id),
+      productList: cartItems.map((item) => item?.id),
       totalPrice: totalPrice,
     };
     console.log(newOrder);
+    try {
+      await createOrder(newOrder).unwrap();
+      Swal.fire({
+        title: "Continue on placing order?",
+        text: "Your order will be created.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Contine"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Order is places!",
+            text: "Your order number is", // TO-DO!
+            icon: "success"
+          });
+        }
+      });
+      navigate("/orders");
+    } catch (error) {
+      console.error("Error creating an order: ", error);
+      alert("Order is not created. Please Try again.");
+    }
   };
 
   const {currentUser} = useAuth(); 
+
+  if(isLoading)return <div>Loading...</div>
 
   return (
     <>

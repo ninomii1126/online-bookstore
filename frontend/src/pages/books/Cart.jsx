@@ -11,6 +11,8 @@ const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const disptch = useDispatch();
 
+  // console.log(cartItems);
+
   const totalPrice = cartItems
     .reduce((acc, item) => acc + item.newPrice, 0)
     .toFixed(2);
@@ -45,7 +47,7 @@ const Cart = () => {
               {cartItems.length > 0 ? (
                 <ul role="list" className="-my-6 divide-y divide-gray-200">
                   {cartItems.map((item) => (
-                    <li key={item?._id} className="flex py-6">
+                    <li key={item?.id} className="flex py-6">
                       <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                         <img
                           alt=""

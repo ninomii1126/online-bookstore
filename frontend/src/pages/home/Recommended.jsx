@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useFetchAllBooksQuery } from "../../redux/features/counter/booksApi";
+import { useFetchAllBooksQuery } from "../../redux/features/books/booksApi";
 
 // Import Swiper styles
 import "swiper/css";

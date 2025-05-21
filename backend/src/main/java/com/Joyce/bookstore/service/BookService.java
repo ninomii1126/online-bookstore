@@ -1,13 +1,13 @@
 package com.Joyce.bookstore.service;
 
-import com.Joyce.bookstore.model.Book;
-import org.bson.types.ObjectId;
+import com.Joyce.bookstore.domain.Book;
+import com.Joyce.bookstore.dto.response.BookResponse;
 
 import java.util.List;
 
 public interface BookService {
 
-    List<Book> getAllBooks();
+    List<BookResponse> getAllBooks();
 
     List<Book> getBooksByCategoryId(String id);
 

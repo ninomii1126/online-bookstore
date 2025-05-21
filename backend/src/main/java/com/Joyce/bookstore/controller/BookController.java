@@ -1,6 +1,7 @@
 package com.Joyce.bookstore.controller;
 
-import com.Joyce.bookstore.model.Book;
+import com.Joyce.bookstore.domain.Book;
+import com.Joyce.bookstore.dto.response.BookResponse;
 import com.Joyce.bookstore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,15 +10,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/book")
 public class BookController {
 
     @Autowired
     private BookService bookService;
 
     @GetMapping("/getBooks")
-    ResponseEntity<List<Book>> getAllBooks(){
-        return new ResponseEntity<List<Book>>(bookService.getAllBooks(), HttpStatus.OK);
+    ResponseEntity<List<BookResponse>> getAllBooks(){
+        return new ResponseEntity<List<BookResponse>>(bookService.getAllBooks(), HttpStatus.OK);
     }
 
     @GetMapping("/getSingleBook/{id}")

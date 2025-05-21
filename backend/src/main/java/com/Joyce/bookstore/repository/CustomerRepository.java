@@ -1,6 +1,6 @@
 package com.Joyce.bookstore.repository;
 
-import com.Joyce.bookstore.model.Customer;
+import com.Joyce.bookstore.domain.Customer;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

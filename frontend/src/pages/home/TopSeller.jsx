@@ -12,7 +12,7 @@ import "swiper/css/navigation";
 // import required modules
 import { Pagination } from "swiper/modules";
 import { Navigation } from "swiper/modules";
-import { useFetchAllBooksQuery } from "../../redux/features/counter/booksApi"
+import { useFetchAllBooksQuery } from "../../redux/features/books/booksApi";
 
 const categories = [
   "Choose a genre",

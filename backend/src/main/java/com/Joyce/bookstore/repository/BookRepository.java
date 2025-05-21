@@ -1,6 +1,6 @@
 package com.Joyce.bookstore.repository;
 
-import com.Joyce.bookstore.model.Book;
+import com.Joyce.bookstore.domain.Book;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
