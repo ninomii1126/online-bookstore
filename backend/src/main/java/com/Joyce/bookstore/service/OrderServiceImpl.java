@@ -8,6 +8,9 @@ import com.Joyce.bookstore.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class OrderServiceImpl implements OrderService {
     @Autowired
@@ -18,5 +21,13 @@ public class OrderServiceImpl implements OrderService {
         Order entity = OrderMapper.toEntity(req);
         orderRepository.insert(entity);
         return OrderMapper.toResponse(entity);
+    }
+
+    @Override
+    public List<CreateOrderResponse> getOrdersByEmail(String email) {
+        List<Order> orders = orderRepository.findByEmail(email);
+        if(orders.isEmpty()) return null;
+
+        return orders.stream().map(o ->OrderMapper.toResponse(o)).collect(Collectors.toList());
     }
 }

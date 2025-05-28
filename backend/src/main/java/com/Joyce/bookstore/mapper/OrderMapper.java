@@ -28,12 +28,14 @@ public class OrderMapper {
 
     public static CreateOrderResponse toResponse(Order order) {
         CreateOrderResponse res = new CreateOrderResponse();
-        res.setOrderId(order.getOrderId());
+        res.setOrderId(order.getOrderId().toHexString());
         res.setName(order.getName());
         res.setEmail(order.getEmail());
         res.setAddress(order.getAddress());
         res.setPhone(order.getPhone());
-        res.setProductList(order.getProductList());
+        List<ObjectId> productList = order.getProductList();
+        List<String> stringList = productList== null ? null : order.getProductList().stream().map(o -> o.toHexString()).collect(Collectors.toList());
+        res.setProductList(stringList);
         res.setTotalPrice(order.getTotalPrice());
         return res;
     }
