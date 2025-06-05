@@ -1,6 +1,6 @@
 package com.Joyce.bookstore.controller;
 
-import com.Joyce.bookstore.dto.request.CreateOrderRequestVO;
+import com.Joyce.bookstore.dto.request.CreateOrderRequest;
 import com.Joyce.bookstore.dto.response.CreateOrderResponse;
 import com.Joyce.bookstore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("/createOrder")
-    ResponseEntity<CreateOrderResponse> createOrder(@RequestBody CreateOrderRequestVO requestVO){
+    ResponseEntity<CreateOrderResponse> createOrder(@RequestBody CreateOrderRequest requestVO){
         return new ResponseEntity<CreateOrderResponse>(orderService.createOrder(requestVO), HttpStatus.OK);
     }
 

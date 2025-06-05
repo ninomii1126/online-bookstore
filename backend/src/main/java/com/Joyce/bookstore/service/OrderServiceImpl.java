@@ -1,7 +1,7 @@
 package com.Joyce.bookstore.service;
 
 import com.Joyce.bookstore.domain.Order;
-import com.Joyce.bookstore.dto.request.CreateOrderRequestVO;
+import com.Joyce.bookstore.dto.request.CreateOrderRequest;
 import com.Joyce.bookstore.dto.response.CreateOrderResponse;
 import com.Joyce.bookstore.mapper.OrderMapper;
 import com.Joyce.bookstore.repository.OrderRepository;
@@ -17,7 +17,7 @@ public class OrderServiceImpl implements OrderService {
     OrderRepository orderRepository;
 
     @Override
-    public CreateOrderResponse createOrder(CreateOrderRequestVO req) {
+    public CreateOrderResponse createOrder(CreateOrderRequest req) {
         Order entity = OrderMapper.toEntity(req);
         orderRepository.insert(entity);
         return OrderMapper.toResponse(entity);

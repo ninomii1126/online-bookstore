@@ -6,6 +6,7 @@ import com.Joyce.bookstore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,11 +34,13 @@ public class BookController {
     }
 
     @PutMapping("/updateBook/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     ResponseEntity<Book> updateBook(@PathVariable String id, @RequestBody Book book){
         return new ResponseEntity<Book>(bookService.updateBook(id, book), HttpStatus.OK);
     }
 
-    @DeleteMapping("deleteBook/{id}") 
+    @DeleteMapping("deleteBook/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     ResponseEntity<String> deleteBook(@PathVariable String id){
         return new ResponseEntity<String>(bookService.deleteBook(id), HttpStatus.OK);
     }

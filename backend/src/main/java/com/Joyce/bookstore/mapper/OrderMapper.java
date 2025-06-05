@@ -1,7 +1,7 @@
 package com.Joyce.bookstore.mapper;
 
 import com.Joyce.bookstore.domain.Order;
-import com.Joyce.bookstore.dto.request.CreateOrderRequestVO;
+import com.Joyce.bookstore.dto.request.CreateOrderRequest;
 import com.Joyce.bookstore.dto.response.CreateOrderResponse;
 import org.bson.types.ObjectId;
 
@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class OrderMapper {
 
-    public static Order toEntity(CreateOrderRequestVO req) {
+    public static Order toEntity(CreateOrderRequest req) {
         Order order = new Order();
         order.setName(req.getName());
         order.setEmail(req.getEmail());
