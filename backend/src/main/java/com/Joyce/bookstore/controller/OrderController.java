@@ -2,6 +2,7 @@ package com.Joyce.bookstore.controller;
 
 import com.Joyce.bookstore.dto.request.CreateOrderRequest;
 import com.Joyce.bookstore.dto.request.TotalOrdersRequest;
+import com.Joyce.bookstore.dto.request.TotalRevenueRequest;
 import com.Joyce.bookstore.dto.response.CreateOrderResponse;
 import com.Joyce.bookstore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -28,10 +30,14 @@ public class OrderController {
         return new ResponseEntity<List<CreateOrderResponse>>(orderService.getOrdersByEmail(email), HttpStatus.OK);
     }
 
-    @PostMapping("/total")
+    @PostMapping("/totalCount")
     ResponseEntity<Long> getTotalOrders(TotalOrdersRequest req){
         return new ResponseEntity<Long>(orderService.getTotalOrders(req), HttpStatus.OK);
     }
 
+    @PostMapping("/totalRevenue")
+    ResponseEntity<BigDecimal> getTotal(TotalRevenueRequest req){
+        return new ResponseEntity<BigDecimal>(orderService.getTotalRevenue(req), HttpStatus.OK);
+    }
 
 }

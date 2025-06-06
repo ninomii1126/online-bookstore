@@ -3,12 +3,14 @@ package com.Joyce.bookstore.service;
 import com.Joyce.bookstore.domain.Order;
 import com.Joyce.bookstore.dto.request.CreateOrderRequest;
 import com.Joyce.bookstore.dto.request.TotalOrdersRequest;
+import com.Joyce.bookstore.dto.request.TotalRevenueRequest;
 import com.Joyce.bookstore.dto.response.CreateOrderResponse;
 import com.Joyce.bookstore.mapper.OrderMapper;
 import com.Joyce.bookstore.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,5 +42,18 @@ public class OrderServiceImpl implements OrderService {
 
         // TO-DO: count orders by create date
         return null;
+    }
+
+    @Override
+    public BigDecimal getTotalRevenue(TotalRevenueRequest req) {
+
+        BigDecimal totalRevenue = orderRepository.findAll()
+                .stream()
+                .map(Order::getTotalPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        // TO-DO: count orders by create date
+
+        return totalRevenue;
     }
 }

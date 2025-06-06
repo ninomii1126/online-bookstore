@@ -2,8 +2,10 @@ package com.Joyce.bookstore.service;
 
 import com.Joyce.bookstore.dto.request.CreateOrderRequest;
 import com.Joyce.bookstore.dto.request.TotalOrdersRequest;
+import com.Joyce.bookstore.dto.request.TotalRevenueRequest;
 import com.Joyce.bookstore.dto.response.CreateOrderResponse;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface OrderService {
@@ -13,4 +15,6 @@ public interface OrderService {
     List<CreateOrderResponse> getOrdersByEmail(String email);
 
     Long getTotalOrders(TotalOrdersRequest req);
+
+    BigDecimal getTotalRevenue(TotalRevenueRequest req);
 }
