@@ -22,7 +22,7 @@ public class OrderMapper {
                 .collect(Collectors.toList());
         order.setProductList(objectIds );
         order.setTotalPrice(req.getTotalPrice());
-//        order.setCreatedAt(LocalDateTime.now());
+        order.setCreateAt(req.getCreateAt());
         return order;
     }
 

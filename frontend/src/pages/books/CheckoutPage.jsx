@@ -37,6 +37,7 @@ const CheckoutPage = () => {
       phone: data.phone,
       productList: cartItems.map((item) => item?.id),
       totalPrice: totalPrice,
+      createAt: new Date(),
     };
     console.log(newOrder);
     try {

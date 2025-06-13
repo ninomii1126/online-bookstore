@@ -15,5 +15,7 @@ public interface BookRepository extends MongoRepository<Book, ObjectId> {
     List<Book> findAll(String category);
     Optional<Book> findById(ObjectId id);
 
+    Long countByTrendingTrue();
+
 //    void createBook(Book newBook);
 }

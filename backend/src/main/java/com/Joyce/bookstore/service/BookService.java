@@ -18,4 +18,8 @@ public interface BookService {
     Book updateBook(String id, Book book);
 
     String deleteBook(String id);
+
+    Long getTrendingBooks();
+
+    Long getTotalBooksCount();
 }

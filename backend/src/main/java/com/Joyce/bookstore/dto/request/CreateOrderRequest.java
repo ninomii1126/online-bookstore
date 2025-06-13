@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -19,5 +20,6 @@ public class CreateOrderRequest {
 
     private List<String> productList;
     private BigDecimal totalPrice;
+    private Date createAt;
 
 }

@@ -35,6 +35,6 @@ public class Book {
 
     private BigDecimal newPrice;
 
-    private Date CreateDate;
+    private Date createAt;
 
 }

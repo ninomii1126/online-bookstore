@@ -38,19 +38,10 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public Book getSingleBook(String id) {
-//        ObjectId objectId = new ObjectId(id);
-//        System.out.println("Converted to ObjectId: " + objectId);
-//        if(bookRepository.findById(objectId).isPresent()){
-//            return bookRepository.findById(objectId).get();
-//        }
-//        System.out.println("no data, id " + id);
-//        return null;
         System.out.println("Received ID string in getSingleBook: " + id);
         try {
             ObjectId objectId = new ObjectId(id);
-            // ****** ADD THIS LOG ******
             System.out.println("Searching for ObjectId: " + objectId.toHexString());
-            // ***********************
 
             if(bookRepository.findById(objectId).isPresent()){
                 System.out.println("Found book with ID: " + id);
@@ -77,7 +68,7 @@ public class BookServiceImpl implements BookService{
                     existingBook.setCoverImage(updateBook.getCoverImage());
                     existingBook.setOldPrice(updateBook.getOldPrice());
                     existingBook.setNewPrice(updateBook.getNewPrice());
-                    existingBook.setCreateDate(new Date());
+                    existingBook.setCreateAt(new Date());
 
                     return bookRepository.save(existingBook);
                 }).orElseThrow(()-> new RuntimeException("Book not found with id: " + id))
@@ -93,6 +84,16 @@ public class BookServiceImpl implements BookService{
         }catch (Exception e){
             return "Error occurred while deleting book with ID " + id + ": " + e.getMessage();
         }
+    }
+
+    @Override
+    public Long getTrendingBooks() {
+        return bookRepository.countByTrendingTrue();
+    }
+
+    @Override
+    public Long getTotalBooksCount() {
+        return bookRepository.count();
     }
 
 

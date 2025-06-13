@@ -4,6 +4,7 @@ import com.Joyce.bookstore.dto.request.CreateOrderRequest;
 import com.Joyce.bookstore.dto.request.TotalOrdersRequest;
 import com.Joyce.bookstore.dto.request.TotalRevenueRequest;
 import com.Joyce.bookstore.dto.response.CreateOrderResponse;
+import com.Joyce.bookstore.dto.response.MonthlySalesResponse;
 import com.Joyce.bookstore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,6 +39,11 @@ public class OrderController {
     @PostMapping("/totalRevenue")
     ResponseEntity<BigDecimal> getTotal(TotalRevenueRequest req){
         return new ResponseEntity<BigDecimal>(orderService.getTotalRevenue(req), HttpStatus.OK);
+    }
+
+    @GetMapping("/monthlyRevenue")
+    ResponseEntity<MonthlySalesResponse> getMonthlyRevenue(){
+        return new ResponseEntity<MonthlySalesResponse>(orderService.getMonthlyRevenue(), HttpStatus.OK);
     }
 
 }

@@ -14,7 +14,7 @@ public class BookMapper {
         res.setCoverImage(book.getCoverImage());
         res.setOldPrice(book.getOldPrice());
         res.setNewPrice(book.getNewPrice());
-        res.setCreateDate(book.getCreateDate());
+        res.setCreateDate(book.getCreateAt());
         return res;
     }
 }

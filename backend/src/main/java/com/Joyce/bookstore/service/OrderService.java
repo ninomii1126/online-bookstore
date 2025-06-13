@@ -4,6 +4,7 @@ import com.Joyce.bookstore.dto.request.CreateOrderRequest;
 import com.Joyce.bookstore.dto.request.TotalOrdersRequest;
 import com.Joyce.bookstore.dto.request.TotalRevenueRequest;
 import com.Joyce.bookstore.dto.response.CreateOrderResponse;
+import com.Joyce.bookstore.dto.response.MonthlySalesResponse;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,4 +18,6 @@ public interface OrderService {
     Long getTotalOrders(TotalOrdersRequest req);
 
     BigDecimal getTotalRevenue(TotalRevenueRequest req);
+
+    MonthlySalesResponse getMonthlyRevenue();
 }

@@ -44,4 +44,16 @@ public class BookController {
     ResponseEntity<String> deleteBook(@PathVariable String id){
         return new ResponseEntity<String>(bookService.deleteBook(id), HttpStatus.OK);
     }
+
+    @GetMapping("/getTrending")
+    ResponseEntity<Long> getTrendingBooksCount(){
+        return new ResponseEntity<Long>(bookService.getTrendingBooks(), HttpStatus.OK);
+    }
+
+    @GetMapping("/totalNumber")
+    ResponseEntity<Long> getTotalBooksCount(){
+        return new ResponseEntity<Long>(bookService.getTotalBooksCount(), HttpStatus.OK);
+    }
+
+
 }
