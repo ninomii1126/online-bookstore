@@ -1,0 +1,14 @@
+# 使用 OpenJDK 17 作為基礎映像
+FROM openjdk:17-jdk-slim
+
+# 設定工作目錄
+WORKDIR /app
+
+# 複製 build 的 Jar 檔案
+COPY build/libs/*.jar app.jar
+
+# 暴露 Port（Render 預設會看 PORT 環境變數）
+EXPOSE 8080
+
+# 設定啟動指令
+ENTRYPOINT ["java", "-jar", "app.jar"]
