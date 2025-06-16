@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react()],
 
   build: {
-    outDir: "../backend/src/main/resources/static",
+    outDir: "dist",
     emptyOutDir: true, // 每次打包清空舊的
   },
 });
