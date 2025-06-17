@@ -18,7 +18,7 @@ public class CorsConfig {
                 System.out.println("corsConfigurer bean is being created!");
 
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:5173","http://localhost:5174","http://localhost:8080", "https://online-bookstore-ij73.onrender.com/") // 允許來自 local 伺服器的請求
+                        .allowedOrigins("http://localhost:5173","http://localhost:5174","http://localhost:8080", "https://online-bookstore-one.vercel.app") // 允許來自 local 伺服器的請求
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
