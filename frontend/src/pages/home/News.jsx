@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -9,84 +9,56 @@ import "swiper/css/navigation";
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
 
+import { NEWS_API_KEY, NEWS_API_URL } from '../../config';
+
 import news1 from "../../assets/news/news-1.png";
 import news2 from "../../assets/news/news-2.png";
 import news3 from "../../assets/news/news-3.png";
 import news4 from "../../assets/news/news-4.png";
 import { Link } from "react-router-dom";
-
-const news = [
-  {
-    id: 1,
-    title: "Global Climate Summit Calls for Urgent Action",
-    description:
-      "World leaders gather at the Global Climate Summit to discuss urgent strategies to combat climate change, focusing on reducing carbon emissions and fostering renewable energy solutions.",
-    image: news1,
-  },
-  {
-    id: 2,
-    title: "Breakthrough in AI Technology Announced",
-    description:
-      "A major breakthrough in artificial intelligence has been announced by researchers, with new advancements promising to revolutionize industries from healthcare to finance.",
-    image: news2,
-  },
-  {
-    id: 3,
-    title: "New Space Mission Aims to Explore Distant Galaxies",
-    description:
-      "NASA has unveiled plans for a new space mission that will aim to explore distant galaxies, with hopes of uncovering insights into the origins of the universe.",
-    image: news3,
-  },
-  {
-    id: 4,
-    title: "Stock Markets Reach Record Highs Amid Economic Recovery",
-    description:
-      "Global stock markets have reached record highs as signs of economic recovery continue to emerge following the challenges posed by the global pandemic.",
-    image: news4,
-  },
-  {
-    id: 5,
-    title: "Innovative New Smartphone Released by Leading Tech Company",
-    description:
-      "A leading tech company has released its latest smartphone model, featuring cutting-edge technology, improved battery life, and a sleek new design.",
-    image: news2,
-  },
-];
+import axios from "axios";
 
 const News = () => {
+
+const [articles, setArticles] = useState([]);
+  const keyword = "literature"; // change this as needed
+
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const res = await axios.get(
+         `${NEWS_API_URL}?q=${keyword}&apiKey=${NEWS_API_KEY}`
+        );
+        setArticles(res.data.articles);
+      } catch (error) {
+        console.error("Failed to fetch news:", error);
+      }
+    };
+
+    fetchNews();
+  }, []);
+
   return (
     <div>
-      <h2 className="text-3x1 font-semibold mb-6">News</h2>
+      <h2 className="text-3xl font-semibold mb-6">News</h2>
       <Swiper
         slidesPerView={1}
         spaceBetween={30}
-        // pagination={{
-        //   clickable: true,
-        // }}
         navigation={true}
         breakpoints={{
-          640: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 40,
-          },
-          1024: {
-            slidesPerView: 2,
-            spaceBetween: 50,
-          },
+          640: { slidesPerView: 1, spaceBetween: 20 },
+          768: { slidesPerView: 2, spaceBetween: 40 },
+          1024: { slidesPerView: 2, spaceBetween: 50 },
         }}
         modules={[Navigation, Pagination]}
         className="mySwiper"
       >
-        {news.map((item, index) => (
+        {articles.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="flex  flex-col sm:flex-row sm:justify-between">
-              {/* content */}
-              <div className="py-4">
-                <Link to="/">
+            <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
+              <div className="py-4 flex-1">
+                <Link to={item.url} target="_blank">
                   <h3 className="text-lg font-medium hover:text-blue-500 mb-4">
                     {item.title}
                   </h3>
@@ -94,8 +66,12 @@ const News = () => {
                 <div className="w-14 h-[3px] bg-primary mb-6"></div>
                 <p className="text-sm text-gray-600">{item.description}</p>
               </div>
-              <div className="flex-shrink-0">
-                <img src={item.image} alt="" className="w-full object-cover"/>
+              <div className="flex-shrink-0 w-full sm:w-48">
+                <img
+                  src={item.urlToImage || "/placeholder-news.png"}
+                  alt={item.title}
+                  className="w-full object-cover rounded"
+                />
               </div>
             </div>
           </SwiperSlide>
