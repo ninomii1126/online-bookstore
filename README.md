@@ -1,1 +1,1 @@
-# online-bookstore project
+# online-bookstore
