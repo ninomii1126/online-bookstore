@@ -49,9 +49,8 @@ const TopSeller = () => {
   const filteredBooks =
     selectedCategory === "Choose a genre"
       ? books
-      : books.filter(
-          (book) => book.category === selectedCategory.toLowerCase()
-        );
+      : books.filter(book =>
+  book.categories.includes(selectedCategory.toLowerCase()));
 
   return (
     <div className="py-10">

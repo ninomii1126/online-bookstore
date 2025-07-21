@@ -15,6 +15,7 @@ const BookCarousel = ({ books }) => {
       spaceBetween={10}
       slidesPerView={4}
       loop={true}
+      className="relative z-0"
     >
       {books.map((book) => (
         <SwiperSlide key={book.id}>
