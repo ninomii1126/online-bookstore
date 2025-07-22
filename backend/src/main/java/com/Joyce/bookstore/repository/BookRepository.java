@@ -17,5 +17,7 @@ public interface BookRepository extends MongoRepository<Book, ObjectId> {
 
     Long countByTrendingTrue();
 
+    Boolean existsByIsbn(String isbn);
+
 //    void createBook(Book newBook);
 }

@@ -3,6 +3,7 @@ package com.Joyce.bookstore.controller;
 import com.Joyce.bookstore.domain.Book;
 import com.Joyce.bookstore.dto.response.BookResponse;
 import com.Joyce.bookstore.service.BookService;
+import com.Joyce.bookstore.service.BooksUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,9 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private BooksUpdateService booksUpdateService;
 
     @GetMapping("/getBooks")
     ResponseEntity<List<BookResponse>> getAllBooks(){
@@ -46,13 +50,16 @@ public class BookController {
     }
 
     @GetMapping("/getTrending")
-    ResponseEntity<Long> getTrendingBooksCount(){
+    ResponseEntity<Long> getTrendingBooksCOunt(){
         return new ResponseEntity<Long>(bookService.getTrendingBooks(), HttpStatus.OK);
     }
 
-    @GetMapping("/totalNumber")
-    ResponseEntity<Long> getTotalBooksCount(){
-        return new ResponseEntity<Long>(bookService.getTotalBooksCount(), HttpStatus.OK);
+
+
+    @PostMapping("/importBooks")
+     ResponseEntity<Boolean> importBooks(){
+        return new ResponseEntity<>(booksUpdateService.updateBooks(), HttpStatus.OK);
+
     }
 
 

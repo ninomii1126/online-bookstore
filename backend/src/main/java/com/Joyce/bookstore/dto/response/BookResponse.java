@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -14,7 +16,7 @@ public class BookResponse {
     public   String title;
     private  String description;
 
-    private String category;
+    private List<String> category;
 
     private Boolean trending;
 

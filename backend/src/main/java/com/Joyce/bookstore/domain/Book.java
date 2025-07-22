@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Document("book")
 @AllArgsConstructor
@@ -22,10 +23,11 @@ public class Book {
     @Id
     @Field("_id")
     private ObjectId id;
-    public   String title;
-    private  String description;
+    private String title;
+    private String isbn;
+    private String description;
 
-    private String category;
+    private List<String> category;
 
     private Boolean trending;
 
