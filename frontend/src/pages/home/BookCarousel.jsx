@@ -17,7 +17,7 @@ const BookCarousel = ({ books }) => {
       loop={true}
       className="relative z-0"
     >
-      {books.map((book) => (
+      {books.slice(0, 5).map((book) => (
         <SwiperSlide key={book.id}>
           <div className="book-card">
             <img
