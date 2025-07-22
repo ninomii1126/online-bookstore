@@ -1,0 +1,51 @@
+name: Build and Deploy to Azure Container App
+
+on:
+  push:
+    branches:
+      - main  # 你要部署的分支
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x ./gradlew
+
+    - name: Build with Gradle
+      run: ./gradlew build
+
+    - name: Log in to Azure using service principal
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+
+    - name: Log in to Azure Container Registry
+      run: |
+        az acr login --name ${{ secrets.AZURE_CONTAINER_REGISTRY }}
+
+    - name: Build and push Docker image
+      run: |
+        IMAGE_NAME=${{ secrets.AZURE_CONTAINER_REGISTRY }}/bookstore:latest
+        docker build -t $IMAGE_NAME .
+        docker push $IMAGE_NAME
+
+    - name: Deploy to Azure Container App
+      run: |
+        az containerapp update \
+          --name ${{ secrets.AZURE_CONTAINERAPP_NAME }} \
+          --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
+          --image ${{ secrets.AZURE_CONTAINER_REGISTRY }}/bookstore:latest
