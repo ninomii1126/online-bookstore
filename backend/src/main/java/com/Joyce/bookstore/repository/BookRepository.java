@@ -19,5 +19,14 @@ public interface BookRepository extends MongoRepository<Book, ObjectId> {
 
     Boolean existsByIsbn(String isbn);
 
-//    void createBook(Book newBook);
+    List<Book> findByTitleContainingIgnoreCaseOrAuthorContainingIgnoreCase(String title, String author);
+
+    List<Book> findByTitleContainingIgnoreCase(String title);
+
+    @Query("{ '$or': [ " +
+            "  { 'title': { $regex: ?0, $options: 'i' } }, " +
+            "  { 'author': { $regex: ?0, $options: 'i' } } " +
+            "] }")
+    List<Book> searchByExactWordRegex(String wordRegex);
+
 }

@@ -96,5 +96,16 @@ public class BookServiceImpl implements BookService{
         return bookRepository.count();
     }
 
+    @Override
+    public List<BookResponse> searchBooks(String query) {
+        String regex = "\\b" + query + "\\b";
+        List<Book> books = bookRepository.searchByExactWordRegex(regex);
+        List<BookResponse> res = new ArrayList<>();
+        for(Book book : books){
+            res.add(BookMapper.toResponse(book));
+        }
+        return res;
+    }
+
 
 }

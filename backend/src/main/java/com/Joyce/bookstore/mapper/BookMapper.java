@@ -8,6 +8,8 @@ public class BookMapper {
         BookResponse res = new BookResponse();
         res.setId(book.getId().toHexString());
         res.setCategory(book.getCategory());
+        res.setAuthor(book.getAuthor());
+        res.setPublishDate(book.getPublishDate());
         res.setTitle(book.getTitle());
         res.setDescription(book.getDescription());
         res.setTrending(book.getTrending());

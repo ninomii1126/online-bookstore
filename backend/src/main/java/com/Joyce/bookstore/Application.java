@@ -2,6 +2,7 @@ package com.Joyce.bookstore;
 
 import com.Joyce.bookstore.repository.BookRepository;
 import com.Joyce.bookstore.repository.CustomerRepository;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,6 +26,18 @@ public class Application {
     private BookRepository bookRepository;
 
     public static void main(String[] args) {
+        Dotenv dotenv = Dotenv.configure()
+//                .directory("backend")  // 如果 .env 在 backend 資料夾就寫這
+                .ignoreIfMalformed()
+                .ignoreIfMissing()
+                .load();
+
+        // 把 .env 的變數設定成系統屬性，Spring Boot 才能讀到
+        System.setProperty("MONGODB_URI", dotenv.get("MONGODB_URI"));
+        System.setProperty("MONGODB_DB", dotenv.get("MONGODB_DB"));
+        System.setProperty("NYT_API_KEY", dotenv.get("NYT_API_KEY"));
+        System.setProperty("GOOG_API_KEY", dotenv.get("GOOG_API_KEY"));
+        System.setProperty("JWT_SECRET", dotenv.get("JWT_SECRET"));
         SpringApplication.run(Application.class, args);
     }
 

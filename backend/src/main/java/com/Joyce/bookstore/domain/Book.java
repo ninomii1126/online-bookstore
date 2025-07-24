@@ -25,9 +25,13 @@ public class Book {
     private ObjectId id;
     private String title;
     private String isbn;
+
+    private String author;
     private String description;
 
     private List<String> category;
+
+    private Date publishDate;
 
     private Boolean trending;
 

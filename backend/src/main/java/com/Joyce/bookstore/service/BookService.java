@@ -22,4 +22,6 @@ public interface BookService {
     Long getTrendingBooks();
 
     Long getTotalBooksCount();
+
+    List<BookResponse> searchBooks(String query);
 }

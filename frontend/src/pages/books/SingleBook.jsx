@@ -46,7 +46,7 @@ const SingleBook = () => {
         <div className='mb-5'>
             <p className="text-gray-700 mb-2"><strong>Author:</strong> {book?.author || 'admin'}</p>
             <p className="text-gray-700 mb-4">
-                <strong>Published:</strong> {new Date(book?.createdAt).toLocaleDateString()}
+                <strong>Published:</strong> {new Date(book?.publishDate).toLocaleDateString()}
             </p>
             <p className="text-gray-700 mb-4 capitalize">
                 <strong>Category:</strong> {book?.category}

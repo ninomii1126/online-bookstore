@@ -62,5 +62,11 @@ public class BookController {
 
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<BookResponse>> searchBooks(@RequestParam("query") String query) {
+        List<BookResponse> books = bookService.searchBooks(query);
+        return ResponseEntity.ok(books);
+    }
+
 
 }

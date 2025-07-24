@@ -13,7 +13,9 @@ import java.util.List;
 @NoArgsConstructor
 public class BookResponse {
     private String id;
-    public   String title;
+    private String title;
+    private String author;
+    private Date publishDate;
     private  String description;
 
     private List<String> category;

@@ -2,7 +2,6 @@ package com.Joyce.bookstore.service;
 
 import com.Joyce.bookstore.domain.Book;
 import com.Joyce.bookstore.repository.BookRepository;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +11,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +46,8 @@ public class BooksUpdateService {
 
         Map<String, Object> results = (Map<String, Object>) body.get("results");
         List<Map<String, Object>> lists = (List<Map<String, Object>>) results.get("lists");
+        LocalDate localDate = LocalDate.parse(results.get("published_date").toString());
+        Date publishDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
         if (lists == null || lists.isEmpty()) return false;
 
@@ -61,9 +64,11 @@ public class BooksUpdateService {
                 if (isbn == null || bookRepository.existsByIsbn(isbn)) continue;
 
                 Book book = new Book();
-                book.setId(new ObjectId());
+//                book.setId(new ObjectId());
                 book.setTitle((String) bookData.get("title"));
+                book.setAuthor((String) bookData.get("author"));
                 book.setIsbn(isbn);
+                book.setPublishDate(publishDate);
                 book.setDescription((String) bookData.get("description"));
                 book.setCoverImage((String) bookData.get("book_image"));
                 book.setCategory(fetchCategoryFromGoogleBooks(isbn));
