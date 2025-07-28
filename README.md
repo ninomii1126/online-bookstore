@@ -33,6 +33,13 @@ Frontend: [Online Bookstore Website](https://ambitious-smoke-0c77b2d10.1.azurest
 - JWT for secure authentication
 - Firebase Admin SDK
 
+## External APIs 🌐
+
+- 📚 **Google Books API** – Provides book details 
+- 📰 **New York Times Books API** – Displays current bestsellers
+- 🗞️ **NewsAPI.org** – Retrieves the latest news articles related to books and reading topics
+- 
+
 ### DevOps / Deployment
 
 - Docker
@@ -146,9 +153,4 @@ frontend/
 - `FIREBASE_CONFIG_PATH`
 - `JWT_SECRET`
 
----
-
-## 📜 License
-
-MIT License
 
