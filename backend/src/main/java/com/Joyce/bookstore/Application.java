@@ -38,6 +38,8 @@ public class Application {
         System.setProperty("NYT_API_KEY", dotenv.get("NYT_API_KEY"));
         System.setProperty("GOOG_API_KEY", dotenv.get("GOOG_API_KEY"));
         System.setProperty("JWT_SECRET", dotenv.get("JWT_SECRET"));
+        System.setProperty("NEWS_API_KEY", dotenv.get("NEWS_API_KEY"));
+
         SpringApplication.run(Application.class, args);
     }
 

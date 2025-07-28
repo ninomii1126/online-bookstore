@@ -11,12 +11,10 @@ import { Pagination, Navigation } from "swiper/modules";
 
 import { NEWS_API_KEY, NEWS_API_URL } from '../../config';
 
-import news1 from "../../assets/news/news-1.png";
-import news2 from "../../assets/news/news-2.png";
-import news3 from "../../assets/news/news-3.png";
-import news4 from "../../assets/news/news-4.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
+
+import getBaseUrl from "../../utils/baseUrl";
 
 const News = () => {
 
@@ -25,19 +23,17 @@ const [articles, setArticles] = useState([]);
 
 
   useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const res = await axios.get(
-         `${NEWS_API_URL}?q=${keyword}&apiKey=${NEWS_API_KEY}`
-        );
-        setArticles(res.data.articles);
-      } catch (error) {
-        console.error("Failed to fetch news:", error);
-      }
-    };
+  const fetchNews = async () => {
+    try {
+      const res = await axios.get(`${getBaseUrl()}/api/news?q=${keyword}`);
+      setArticles(res.data.articles);
+    } catch (error) {
+      console.error("Failed to fetch news:", error);
+    }
+  };
 
-    fetchNews();
-  }, []);
+  fetchNews();
+}, []);
 
   return (
     <div>
