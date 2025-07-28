@@ -1,6 +1,6 @@
 # Online Bookstore
 
-![preview](readme_file/Screenshot 2025-07-22 at 4.24.42 PM.png)
+![Preview](readme_file/Screenshot%202025-07-22%20at%204.24.42%E2%80%AFPM.png)
 
 A full-stack web application for browsing, purchasing, and managing books online. The project is split into a backend (Java Spring Boot) and frontend (React with Redux), and includes features such as authentication, search, order processing, and administrative book management.
 
